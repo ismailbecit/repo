@@ -17,6 +17,6 @@ func (rootRepo *Repositories) Category() CategoryRepo {
 func (c CategoryRepo) Save(request request.CategoryInsert) (*modal.Category, error) {
 	categoryies := modal.Category{}
 	categoryies.Name = request.Name
-	save := c.db.Debug().Save(&categoryies)
+	save := c.db.Save(&categoryies)
 	return &categoryies, save.Error
 }

@@ -13,6 +13,6 @@ func CategoryInsert(c echo.Context) error {
 	if err := c.Bind(&rq); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	newUser, _ := repository.Get().Category().Save(rq)
-	return c.JSON(http.StatusOK, newUser)
+	newCategory, _ := repository.Get().Category().Save(rq)
+	return c.JSON(http.StatusOK, newCategory)
 }
