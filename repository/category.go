@@ -2,6 +2,7 @@ package repository
 
 import (
 	"repo/modal"
+	"repo/modal/request"
 
 	"gorm.io/gorm"
 )
@@ -13,7 +14,9 @@ type CategoryRepo struct {
 func (rootRepo *Repositories) Category() CategoryRepo {
 	return CategoryRepo{db: rootRepo.Db}
 }
-func (c CategoryRepo) Save(category *modal.Category) error {
-	err := c.db.Model(&modal.Category{}).Save(&category)
-	return err.Error
+func (c CategoryRepo) Save(request request.CategoryInsert) (*modal.Category, error) {
+	categoryies := modal.Category{}
+	categoryies.Name = request.Name
+	save := c.db.Debug().Save(&categoryies)
+	return &categoryies, save.Error
 }
