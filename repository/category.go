@@ -13,7 +13,7 @@ type CategoryRepo struct {
 func (rootRepo *Repositories) Category() CategoryRepo {
 	return CategoryRepo{db: rootRepo.Db}
 }
-func (c CategoryRepo) Save(category modal.Category) error {
+func (c CategoryRepo) Save(category *modal.Category) error {
 	err := c.db.Model(&modal.Category{}).Save(&category)
 	return err.Error
 }
